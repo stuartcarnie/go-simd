@@ -11,6 +11,16 @@ func SumFloat64AVX(buf []float64) float64 {
 	return res
 }
 
+//go:noescape
+func __SumFloat64b(buf, len, res unsafe.Pointer)
+
+func SumFloat64b(buf []float64) float64 {
+	var res float64
+	__SumFloat64b(unsafe.Pointer(&buf[0]), unsafe.Pointer(uintptr(len(buf))), unsafe.Pointer(&res))
+	return res
+}
+
+
 func SumFloat64Go(buf []float64) float64 {
 	acc := float64(0)
 	for i := range buf {

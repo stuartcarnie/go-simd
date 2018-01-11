@@ -14,3 +14,11 @@ void SumFloat64(double buf[], size_t len, double *res) {
     acc = _mm256_hadd_pd(acc, acc); // a[0] = a[0] + a[1], a[2] = a[2] + a[3]
     *res = _mm256_cvtsd_f64(acc) + _mm_cvtsd_f64(_mm256_extractf128_pd(acc, 1));
 }
+
+void SumFloat64b(double buf[], size_t len, double *res) {
+    double acc = 0.0;
+    for(int i = 0; i < len; i++) {
+        acc += buf[i];
+    }
+    *res = acc;
+}
