@@ -20,16 +20,17 @@ func sum_float64_go(buf []float64) float64 {
 
 func sum_float64_go_unroll4(buf []float64) float64 {
 	var (
-		acc1, acc2, acc3, acc4 float64
+		acc0, acc1, acc2, acc3 float64
 	)
+
 	for i := 0; i < len(buf); i += 4 {
 		bb := (*[4]float64)(unsafe.Pointer(&buf[i]))
-		acc1 += bb[0]
-		acc2 += bb[1]
-		acc3 += bb[2]
-		acc4 += bb[3]
+		acc0 += bb[0]
+		acc1 += bb[1]
+		acc2 += bb[2]
+		acc3 += bb[3]
 	}
-	return acc1 + acc2 + acc3 + acc4
+	return acc0 + acc1 + acc2 + acc3
 }
 
 func sum_float64_go_unroll8(buf []float64) float64 {

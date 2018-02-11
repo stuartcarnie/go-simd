@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/influxdata/arrow/internal/cpu"
+	"github.com/influxdata/simd/internal/cpu"
 )
 
 func TestAMD64minimalFeatures(t *testing.T) {
