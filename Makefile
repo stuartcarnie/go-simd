@@ -7,7 +7,7 @@ PERL_FIXUP_ROTATE=perl -i -pe 's/(ro[rl]\s+\w{2,3})$$/\1, 1/'
 
 C2GOASM=c2goasm -a -f
 CC=clang
-C_FLAGS=-target x86_64-unknown-none -masm=intel -mno-red-zone -mstackrealign -mllvm -inline-threshold=1000 -fno-asynchronous-unwind-tables \
+C_FLAGS=-target x86_64-apple-darwin -masm=intel -mno-red-zone -mstackrealign -mllvm -inline-threshold=1000 -fno-asynchronous-unwind-tables \
 	-fno-exceptions -fno-rtti -O3 -fno-builtin -ffast-math -fno-jump-tables -I_lib
 ASM_FLAGS_AVX2=-mavx2 -mfma -mllvm -force-vector-width=8
 ASM_FLAGS_SSE4=-msse4
@@ -39,4 +39,16 @@ _lib/sum_sse4.s: _lib/sum.c
 	$(CC) -S $(C_FLAGS) $(ASM_FLAGS_SSE4) $^ -o $@ ; $(PERL_FIXUP_ROTATE) $@
 
 sum_sse4_amd64.s: _lib/sum_sse4.s
+	$(C2GOASM) -a -f $^ $@
+
+_lib/utf8/utf8_avx2.s: _lib/utf8/utf8.c
+	$(CC) -S $(C_FLAGS) $(ASM_FLAGS_AVX2) $^ -o $@ ; $(PERL_FIXUP_ROTATE) $@
+
+utf8_avx2_amd64.s: _lib/utf8/utf8_avx2.s
+	$(C2GOASM) -a -f $^ $@
+
+_lib/utf8/utf8_sse4.s: _lib/utf8/utf8.c
+	$(CC) -S $(C_FLAGS) $(ASM_FLAGS_SSE4) $^ -o $@ ; $(PERL_FIXUP_ROTATE) $@
+
+utf8_sse4_amd64.s: _lib/utf8/utf8_sse4.s
 	$(C2GOASM) -a -f $^ $@

@@ -8,10 +8,10 @@ import (
 
 func init() {
 	if cpu.X86.HasAVX2 {
-		sumFloat64 = sum_float64_avx2
+		validateUTF8fast = validate_utf8_fast_avx2
 	} else if cpu.X86.HasSSE42 {
-		sumFloat64 = sum_float64_sse4
+		validateUTF8fast = validate_utf8_fast_sse4
 	} else {
-		sumFloat64 = sum_float64_go
+		validateUTF8fast = validate_utf8_fast_go
 	}
 }
