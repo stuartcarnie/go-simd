@@ -1,7 +1,9 @@
 go-simd
 =======
 
-Make certain functions Go faster with SIMD, loop unrolling or other optimization techniques. 
+Make certain functions Go faster with SIMD, loop unrolling or other optimization techniques.
+
+This packages chooses the most appropriate implementation at runtime, based on the host CPU features. 
 
 
 Benchmarks
