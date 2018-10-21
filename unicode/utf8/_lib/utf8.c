@@ -1,5 +1,4 @@
 #include "arch.h"
-#include "simdasciicheck.h"
 #include "simdutf8check.h"
 
 void FULL_NAME(validate_utf8_fast)(state *state, const char *buf, size_t len, size_t *res) {

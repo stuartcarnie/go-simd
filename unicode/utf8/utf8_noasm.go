@@ -3,5 +3,5 @@
 package utf8
 
 func init() {
-	validFast = valid_fast_go
+	validFn = validate_utf8_go
 }

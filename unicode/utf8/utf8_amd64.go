@@ -8,10 +8,10 @@ import (
 
 func init() {
 	if cpu.X86.HasAVX2 {
-		validFast = validate_utf8_fast_avx2
+		validFn = validate_utf8_fast_avx2
 	} else if cpu.X86.HasSSE42 {
-		validFast = validate_utf8_fast_sse4
+		validFn = validate_utf8_fast_sse4
 	} else {
-		validFast = valid_fast_go
+		validFn = validate_utf8_go
 	}
 }
