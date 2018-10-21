@@ -1,6 +1,6 @@
 // +build !noasm
 
-package simd
+package utf8
 
 import "unsafe"
 

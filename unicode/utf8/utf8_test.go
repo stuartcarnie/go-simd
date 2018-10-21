@@ -1,6 +1,6 @@
 // +build !noasm
 
-package simd
+package utf8
 
 import (
 	"fmt"
@@ -104,7 +104,7 @@ func makeUTF8(n int) []byte {
 
 func TestValidateUTF8Fast(t *testing.T) {
 	buf := makeUTF8(10)
-	res := ValidateUTF8Fast(buf)
+	res := Valid(buf)
 	exp := utf8.Valid(buf)
 	assert.Equal(t, exp, res)
 }
@@ -135,7 +135,7 @@ var validTests = []ValidTest{
 	{string("\xed\xbf\xbf"), false},         // U+DFFF low surrogate (sic)
 }
 
-func TestValidateUTF8Fast2(t *testing.T) {
+func TestValid(t *testing.T) {
 	fnCases := []struct {
 		n  string
 		fn func([]byte) bool

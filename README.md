@@ -1,5 +1,7 @@
-SIMD Experiments
-================
+go-simd
+=======
+
+Provide fast implementations. See individual package README files 
 
 
 Benchmarks
@@ -30,4 +32,22 @@ BenchmarkSumFloat64_GoUnroll4_1000-8     	 5000000	       287 ns/op	27790.03 MB/
 BenchmarkSumFloat64_GoUnroll4_10000-8    	  500000	      2896 ns/op	27616.44 MB/s
 BenchmarkSumFloat64_GoUnroll8_1000-8     	10000000	       188 ns/op	42341.91 MB/s
 BenchmarkSumFloat64_GoUnroll8_10000-8    	  500000	      2924 ns/op	27358.12 MB/s
+```
+
+### encoding/utf8.Valid
+
+Provide a fast implementation of `utf8.Valid` using SSE and AVX2 functions. Credit for these SIMD implementations go to 
+Daniel Lemire.
+
+Read [this post](https://lemire.me/blog/2018/10/19/validating-utf-8-bytes-using-only-0-45-cycles-per-byte-avx-edition/)
+for more information on these SIMD optimized functions.
+
+
+```
+BenchmarkValidateUTF8Fast_Go_1000-8      	 1000000	      1374 ns/op	 727.68 MB/s
+BenchmarkValidateUTF8Fast_Go_10000-8     	   50000	     32323 ns/op	 309.40 MB/s
+BenchmarkValidateUTF8Fast_SSE4_1000-8    	 5000000	       264 ns/op	3782.58 MB/s
+BenchmarkValidateUTF8Fast_SSE4_10000-8   	  500000	      2416 ns/op	4138.13 MB/s
+BenchmarkValidateUTF8Fast_AVX2_1000-8    	10000000	       154 ns/op	6489.45 MB/s
+BenchmarkValidateUTF8Fast_AVX2_10000-8   	 1000000	      1370 ns/op	7299.13 MB/s
 ```

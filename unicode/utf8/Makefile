@@ -16,13 +16,12 @@ GO_SOURCES := $(shell find . -path ./_lib -prune -o -name '*.go' -not -name '*_t
 ALL_SOURCES := $(shell find . -path ./_lib -prune -o -name '*.go' -name '*.s' -not -name '*_test.go')
 
 INTEL_SOURCES := \
-	sum_avx2_amd64.s sum_sse4_amd64.s
+	utf8_sse4_amd64.s utf8_avx2_amd64.s
 
 
 .PHONEY: test bench
 
 assembly: $(INTEL_SOURCES)
-	@$(MAKE) -C unicode/utf8 assembly
 
 bench: $(GO_SOURCES) $(INTEL_SOURCES)
 	go test -bench=. -run=- ./...
@@ -30,14 +29,14 @@ bench: $(GO_SOURCES) $(INTEL_SOURCES)
 test: $(GO_SOURCES) $(INTEL_SOURCES)
 	go test ./...
 
-_lib/sum_avx2.s: _lib/sum.c
+_lib/utf8_avx2.s: _lib/utf8.c
 	$(CC) -S $(C_FLAGS) $(ASM_FLAGS_AVX2) $^ -o $@ ; $(PERL_FIXUP_ROTATE) $@
 
-sum_avx2_amd64.s: _lib/sum_avx2.s
+utf8_avx2_amd64.s: _lib/utf8_avx2.s
 	$(C2GOASM) -a -f $^ $@
 
-_lib/sum_sse4.s: _lib/sum.c
+_lib/utf8_sse4.s: _lib/utf8.c
 	$(CC) -S $(C_FLAGS) $(ASM_FLAGS_SSE4) $^ -o $@ ; $(PERL_FIXUP_ROTATE) $@
 
-sum_sse4_amd64.s: _lib/sum_sse4.s
+utf8_sse4_amd64.s: _lib/utf8_sse4.s
 	$(C2GOASM) -a -f $^ $@
