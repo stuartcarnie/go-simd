@@ -14,7 +14,7 @@ import (
 func makeASCII(n int) []byte {
 	data := make([]byte, n)
 	for i := range data {
-		data[i] = byte(rand.Uint32() & 0xff)
+		data[i] = byte(rand.Uint32() & 0x7f)
 	}
 	return data
 }
@@ -156,34 +156,39 @@ func TestValid(t *testing.T) {
 	}
 }
 
-func BenchmarkValidateUTF8Fast_Go_1000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 1000, utf8.Valid)
-}
-
-func BenchmarkValidateUTF8Fast_Go_10000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 10000, utf8.Valid)
-}
-
-func BenchmarkValidateUTF8Fast_SSE4_1000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 1000, validate_utf8_fast_sse4)
-}
-
-func BenchmarkValidateUTF8Fast_SSE4_10000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 10000, validate_utf8_fast_sse4)
-}
-
-func BenchmarkValidateUTF8Fast_AVX2_1000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 1000, validate_utf8_fast_avx2)
-}
-
-func BenchmarkValidateUTF8Fast_AVX2_10000(b *testing.B) {
-	benchmarkValidateUTF8FastFn(b, 10000, validate_utf8_fast_avx2)
-}
-
-func benchmarkValidateUTF8FastFn(b *testing.B, n int, fn func([]byte) bool) {
-	buf := makeUTF8(n)
-	b.SetBytes(int64(len(buf)))
-	for i := 0; i < b.N; i++ {
-		fn(buf)
+func BenchmarkValid(b *testing.B) {
+	benchmarks := []struct {
+		name    string
+		validFN func([]byte) bool
+	}{
+		{
+			name:    "utf8.Valid",
+			validFN: utf8.Valid,
+		},
+		{
+			name:    "validate_utf8_fast_sse4",
+			validFN: validate_utf8_fast_sse4,
+		},
+		{
+			name:    "validate_utf8_fast_avx2",
+			validFN: validate_utf8_fast_avx2,
+		},
+	}
+	for _, bm := range benchmarks {
+		b.Run(bm.name, func(b *testing.B) {
+			for name, dataFN := range map[string]func(int) []byte{"ASCII": makeASCII, "UTF8": makeUTF8} {
+				b.Run(name, func(b *testing.B) {
+					for _, n := range []int{100, 10000, 1000000} {
+						buf := dataFN(n)
+						b.Run(fmt.Sprintf("%d", n), func(b *testing.B) {
+							b.SetBytes(int64(len(buf)))
+							for i := 0; i < b.N; i++ {
+								bm.validFN(buf)
+							}
+						})
+					}
+				})
+			}
+		})
 	}
 }
