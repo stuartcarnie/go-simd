@@ -68,3 +68,21 @@ BenchmarkValid/avx2.Valid/UTF8/100-8          	50000000	        35.3 ns/op	2864.
 BenchmarkValid/avx2.Valid/UTF8/10000-8        	 1000000	      1440 ns/op	6943.45 MB/s
 BenchmarkValid/avx2.Valid/UTF8/1000000-8      	   10000	    142939 ns/op	6995.97 MB/s
 ```
+
+
+### encoding/ascii.Valid
+
+A fast implementation for determining if a buffer is valid ASCII data. Credit for SIMD implementations go
+to Daniel Lemire.
+
+```
+BenchmarkValid/go.Valid/100-8     	20000000	        52.3 ns/op	1911.59 MB/s
+BenchmarkValid/go.Valid/10000-8   	  500000	      3048 ns/op	3280.27 MB/s
+BenchmarkValid/go.Valid/1000000-8 	    5000	    303508 ns/op	3294.80 MB/s
+BenchmarkValid/sse4.Valid/100-8   	100000000	        11.5 ns/op	8674.49 MB/s
+BenchmarkValid/sse4.Valid/10000-8 	 5000000	       379 ns/op	26379.43 MB/s
+BenchmarkValid/sse4.Valid/1000000-8         	   50000	     37061 ns/op	26982.04 MB/s
+BenchmarkValid/avx2.Valid/100-8             	200000000	         8.04 ns/op	12437.12 MB/s
+BenchmarkValid/avx2.Valid/10000-8           	10000000	       137 ns/op	72718.12 MB/s
+BenchmarkValid/avx2.Valid/1000000-8         	  100000	     17767 ns/op	56280.99 MB/s
+``` 
