@@ -49,22 +49,22 @@ for more information on these SIMD optimized functions.
 
 
 ```
-BenchmarkValid/utf8.Valid/ASCII/100-8         	20000000	        80.9 ns/op	1236.14 MB/s
-BenchmarkValid/utf8.Valid/ASCII/10000-8       	  200000	      6211 ns/op	1609.93 MB/s
-BenchmarkValid/utf8.Valid/ASCII/1000000-8     	    2000	    623638 ns/op	1603.49 MB/s
-BenchmarkValid/utf8.Valid/UTF8/100-8          	10000000	       142 ns/op	 710.35 MB/s
-BenchmarkValid/utf8.Valid/UTF8/10000-8        	   50000	     33008 ns/op	 302.96 MB/s
-BenchmarkValid/utf8.Valid/UTF8/1000000-8      	     300	   4093794 ns/op	 244.27 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/ASCII/100-8     	30000000	        44.0 ns/op	2272.78 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/ASCII/10000-8   	  500000	      2500 ns/op	3999.59 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/ASCII/1000000-8 	   10000	    255361 ns/op	3916.01 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/UTF8/100-8      	30000000	        46.0 ns/op	2175.00 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/UTF8/10000-8    	  500000	      2446 ns/op	4087.57 MB/s
-BenchmarkValid/validate_utf8_fast_sse4/UTF8/1000000-8  	    5000	    249482 ns/op	4008.30 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/ASCII/100-8     	50000000	        25.0 ns/op	4000.31 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/ASCII/10000-8   	 5000000	       257 ns/op	38904.57 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/ASCII/1000000-8 	   50000	     31137 ns/op	32115.88 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/UTF8/100-8      	50000000	        35.8 ns/op	2821.18 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/UTF8/10000-8    	 1000000	      1438 ns/op	6952.24 MB/s
-BenchmarkValid/validate_utf8_fast_avx2/UTF8/1000000-8  	   10000	    143426 ns/op	6972.20 MB/s
+BenchmarkValid/utf8.Valid/ASCII/100-8         	20000000	        79.5 ns/op	1257.68 MB/s
+BenchmarkValid/utf8.Valid/ASCII/10000-8       	  200000	      6140 ns/op	1628.48 MB/s
+BenchmarkValid/utf8.Valid/ASCII/1000000-8     	    2000	    608369 ns/op	1643.74 MB/s
+BenchmarkValid/utf8.Valid/UTF8/100-8          	10000000	       139 ns/op	 724.09 MB/s
+BenchmarkValid/utf8.Valid/UTF8/10000-8        	   50000	     32722 ns/op	 305.60 MB/s
+BenchmarkValid/utf8.Valid/UTF8/1000000-8      	     500	   3953426 ns/op	 252.95 MB/s
+BenchmarkValid/sse4.Valid/UTF8/100-8          	30000000	        43.7 ns/op	2311.65 MB/s
+BenchmarkValid/sse4.Valid/UTF8/10000-8        	  500000	      2436 ns/op	4104.65 MB/s
+BenchmarkValid/sse4.Valid/UTF8/1000000-8      	   10000	    243250 ns/op	4110.98 MB/s
+BenchmarkValid/sse4.Valid/ASCII/100-8         	30000000	        43.6 ns/op	2294.62 MB/s
+BenchmarkValid/sse4.Valid/ASCII/10000-8       	  500000	      2439 ns/op	4099.68 MB/s
+BenchmarkValid/sse4.Valid/ASCII/1000000-8     	    5000	    246138 ns/op	4062.75 MB/s
+BenchmarkValid/avx2.Valid/ASCII/100-8         	50000000	        24.7 ns/op	4042.96 MB/s
+BenchmarkValid/avx2.Valid/ASCII/10000-8       	 5000000	       256 ns/op	39043.62 MB/s
+BenchmarkValid/avx2.Valid/ASCII/1000000-8     	   50000	     30786 ns/op	32481.66 MB/s
+BenchmarkValid/avx2.Valid/UTF8/100-8          	50000000	        35.3 ns/op	2864.81 MB/s
+BenchmarkValid/avx2.Valid/UTF8/10000-8        	 1000000	      1440 ns/op	6943.45 MB/s
+BenchmarkValid/avx2.Valid/UTF8/1000000-8      	   10000	    142939 ns/op	6995.97 MB/s
 ```

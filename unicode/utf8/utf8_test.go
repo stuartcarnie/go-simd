@@ -166,11 +166,11 @@ func BenchmarkValid(b *testing.B) {
 			validFN: utf8.Valid,
 		},
 		{
-			name:    "validate_utf8_fast_sse4",
+			name:    "sse4.Valid",
 			validFN: validate_utf8_fast_sse4,
 		},
 		{
-			name:    "validate_utf8_fast_avx2",
+			name:    "avx2.Valid",
 			validFN: validate_utf8_fast_avx2,
 		},
 	}
