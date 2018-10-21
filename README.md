@@ -1,7 +1,7 @@
 go-simd
 =======
 
-Provide fast implementations. See individual package README files 
+Make certain functions Go faster with SIMD, loop unrolling or other optimization techniques. 
 
 
 Benchmarks
