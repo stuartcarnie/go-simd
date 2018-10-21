@@ -34,7 +34,7 @@ BenchmarkSumFloat64_GoUnroll8_1000-8     	10000000	       188 ns/op	42341.91 MB/
 BenchmarkSumFloat64_GoUnroll8_10000-8    	  500000	      2924 ns/op	27358.12 MB/s
 ```
 
-### encoding/utf8.Valid
+### unicode/utf8.Valid
 
 Provide a fast implementation of `utf8.Valid` using SSE and AVX2 functions. Credit for these SIMD implementations go to 
 Daniel Lemire.
