@@ -3,8 +3,8 @@ go-simd
 
 Make certain functions Go faster with SIMD, loop unrolling or other optimization techniques.
 
-This packages chooses the most appropriate implementation at runtime, based on the host CPU features, however,
-it is possible to configure this at runtime using the `INTEL_DISABLE_EXT` environment variable.
+This package chooses the most appropriate implementation at runtime, based on the host CPU features, however,
+it is possible to disable certain implementations using the  `INTEL_DISABLE_EXT` environment variable.
 See the [cpu package README](https://github.com/stuartcarnie/go-simd/blob/master/internal/cpu/README.md) for 
 a description of this environment variable.
 
