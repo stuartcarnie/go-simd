@@ -1,7 +1,7 @@
 go-simd
 =======
 
-Make certain functions Go faster with SIMD, loop unrolling or other optimization techniques.
+Make certain functions Go faster with SIMD, loop unrolling, c2goasm or other optimization techniques.
 
 This package chooses the most appropriate implementation at runtime, based on the host CPU features, however,
 it is possible to disable certain implementations using the  `INTEL_DISABLE_EXT` environment variable.
