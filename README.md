@@ -86,3 +86,10 @@ BenchmarkValid/avx2.Valid/100-8      200000000           8 ns/op    12437.12 MB/
 BenchmarkValid/avx2.Valid/10000-8     10000000         137 ns/op    72718.12 MB/s
 BenchmarkValid/avx2.Valid/1000000-8     100000       17767 ns/op    56280.99 MB/s
 ``` 
+
+
+
+## Reference
+
+- John Keiser, Daniel Lemire, [Validating UTF-8 In Less Than One Instruction Per Byte](https://arxiv.org/abs/2010.03090), Software: Practice & Experience (to appear)
+
